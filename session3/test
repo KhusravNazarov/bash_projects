@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Dr licence test"
+read -p "year of birth " year
+age="$((2024-$year))"
+if [ $age -le 16 ]; then 
+echo "you are not eligible"
+elif [[ $age -ge 16 && $age -le 110 ]]; then 
+echo "You are eligible"
+else
+echo "provide a valid year please!"
+fi
