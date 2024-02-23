@@ -1,0 +1,39 @@
+#!/bin/bash
+    read -p "What is your name? " name
+    echo "Hello $name " 
+    echo ">>>>>Pushing files and folders to GitHub....<<<<<< "
+yum install git -y || clear
+git config —-global user.email Khusrav@onlyyou7400@gmail.com || clear
+git status 
+function _git {
+    read -p "provide path to commit" path
+         read -p "provide commit message" mess
+         git add $path
+         git commit -m "$mess"
+         git push
+         echo DONE!
+         }
+    if [ $? -gt 0 ]; then 
+    echo " Repository not found "
+    read -p " Pleas enter the repository name : " repo
+    find / -name $repo | wc -l 
+        if [ "$( find / -name $repo | wc -l )" -gt 1 ]; then
+        echo " More then one result found " 
+            for result in $(find / -name $repo); do
+            read -p " Is this your repository >> $result ? Y/n<<" respond
+            if [ $respond != "Y" ]; then
+            echo " Skipping...."
+            else 
+        
+                cd $result
+                break
+            fi
+        
+            done
+
+         else 
+         _git  
+        fi
+    else 
+    _git
+    fi
