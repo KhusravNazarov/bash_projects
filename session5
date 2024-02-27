@@ -1,0 +1,24 @@
+#!/bin/bash
+yum install tar -y || clear
+clear
+if [ -d /var/www/html ]; then
+    path=$"ls /var/www/html/"
+    echo 'It is working'
+        if [ -z $path ]; then
+        echo 'File is empty'
+        exit
+        else
+        echo working
+        mkdir /var/backups || clear  
+         fname="$(date | awk -F" " '{ print $1 $2 $3 $4 }' | sed 's/://g')"
+        cd /var/www/ && tar -cf /var/backups/sperling-$fname.zip.gz html 
+        
+        fi
+
+
+    else
+    echo 'html folder does not exist'
+
+fi
+old=$(find /var/backups/ -type f -name *.tar -mtime +7)
+rm -rf $old
